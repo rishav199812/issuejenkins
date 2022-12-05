@@ -7,7 +7,7 @@ pipeline {
         stage("create lambda zip based on tag") {
             steps {
               sh 'printenv'
-              echo "{CURRENT_BRANCH_NAME}"
+              echo "${CURRENT_BRANCH_NAME}"
               
               script {
                      DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
