@@ -7,6 +7,8 @@ pipeline {
     stages {
         stage("create lambda zip based on tag") {
           steps {
+            echo GIT_BRANCH %GIT_BRANCH%
+            echo GIT_LOCAL_BRANCH %GIT_LOCAL_BRANCH%
             script {
               CH_S= sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
             }
