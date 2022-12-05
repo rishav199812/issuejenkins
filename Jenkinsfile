@@ -11,7 +11,7 @@ pipeline {
                }
                echo "${BIR_SIZE}"
               script {
-                 GIR_SIZE = sh(returnStdout: true, script: "git branch --show-current")
+                 GIR_SIZE = sh(returnStdout: true, script: "git branch --contains tag")
                 echo "${GIR_SIZE}"
               } 
               script {
