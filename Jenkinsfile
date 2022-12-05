@@ -15,9 +15,7 @@ pipeline {
               script {
                  GIR_SIZE = sh(returnStdout: true, script: "git branch --show-current")
                 sh '''
-                  // GIT_BRANCH = git branch --show-current
                     git branch --show-current
-                    //echo $GIT_BRANCH
                 '''
               } 
               echo "${GIR_SIZE}"
