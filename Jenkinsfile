@@ -22,6 +22,8 @@ pipeline {
                 sh '''
                     git branch --show-current
                 '''
+                sh 'printenv'
+         
               } 
               echo "${GIR_SIZE}"
                script {
