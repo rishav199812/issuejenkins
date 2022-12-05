@@ -1,11 +1,16 @@
 pipeline {
   agent any
+  environment {
+    FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
+    GITI_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
+  }
     stages {
         stage("create lambda zip based on tag") {
           steps {
             script {
               CH_S= sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
             }
+            echo "${GITI_BRANCH}"
             echo "${CH_S}"
             
                script {
