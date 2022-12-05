@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage("create lambda zip based on tag") {
             steps {
+              echo "check testing branch"
                echo "in testing branch"
               sh 'printenv'
               echo "${CURRENT_BRANCH_NAME}"
