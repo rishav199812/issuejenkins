@@ -6,20 +6,23 @@ pipeline {
     stages {
         stage("create lambda zip based on tag") {
             steps {
+              sh 'printenv'
+              echo "${GIT_LOCAL_BRANCH}"
+              
               script {
                      DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
                 }
                 echo "${DIR_SIZE}"
                script {
-                   BIR_SIZE = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD")
+                   BIR_SIZE = sh(returnStdout: true, script: "git branch -a --contains ${DIR_SIZE}")
                }
                echo "${BIR_SIZE}"
               script {
-                 GIR_SIZE = sh(returnStdout: true, script: "git branch --contains tags/${DIR_SIZE}")
+                 GIR_SIZE = sh(returnStdout: true, script: "git branch -a --contains tags/${DIR_SIZE}")
                 echo "${GIR_SIZE}"
               } 
               script {
-                JIR_SIZE = sh(returnStdout: true, script: "git branch")
+                JIR_SIZE = sh(returnStdout: true, script: "git symbolic-ref --short HEAD")
                 echo "${JIR_SIZE}"
               } 
               
@@ -38,4 +41,3 @@ pipeline {
    
             }
 }
-
