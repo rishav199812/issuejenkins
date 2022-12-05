@@ -1,43 +1,11 @@
 pipeline {
   agent any
-  environment {
-    FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
-    GITI_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
-  }
     stages {
         stage("create lambda zip based on tag") {
           steps {
             echo GIT_BRANCH %GIT_BRANCH%
             echo GIT_LOCAL_BRANCH %GIT_LOCAL_BRANCH%
-            script {
-              CH_S= sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-            }
-            echo "${GITI_BRANCH}"
-            echo "${CH_S}"
-            
-               script {
-                   BIR_SIZE = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD `git rev-list --branches --max-count=1` ")
-               }
-               echo "${BIR_SIZE}"
-              script {
-                 GIR_SIZE = sh(returnStdout: true, script: "git branch --show-current")
-                sh '''
-                    git branch --show-current
-                '''
-                sh 'printenv'
-         
-              } 
-              echo "${GIR_SIZE}"
-               script {
-                     DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
-                }
-                echo "${DIR_SIZE}"
-            script {
-              HIR_SIZE = sh(returnStdout: true, script: "git symbolic-ref HEAD")
-            }
-            echo "${HIR_SIZE}"
-                
-            }
-            }
-            }
+              }
+        }
+    }
 }
