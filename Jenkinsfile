@@ -8,6 +8,7 @@ pipeline {
             steps {
               sh 'printenv'
               echo "${GIT_LOCAL_BRANCH}"
+               echo "${GIT_LOCAL_BRANCH}"
               
               script {
                      DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
