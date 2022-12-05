@@ -20,6 +20,10 @@ pipeline {
                      DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
                 }
                 echo "${DIR_SIZE}"
+            script {
+              HIR_SIZE = sh(returnStdout: true, script: "git symbolic-ref HEAD")
+            }
+            echo "${HIR_SIZE}"
                 
             }
             }
