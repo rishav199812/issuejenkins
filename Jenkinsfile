@@ -2,7 +2,12 @@ pipeline {
   agent any
     stages {
         stage("create lambda zip based on tag") {
-            steps {
+          steps {
+            script {
+              CH_S= sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+            }
+            echo "${CH_S}"
+            
                script {
                    BIR_SIZE = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD `git rev-list --branches --max-count=1` ")
                }
