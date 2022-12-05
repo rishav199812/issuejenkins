@@ -19,6 +19,7 @@ pipeline {
                 }
                 echo "${DIR_SIZE}"
             }
+        }
         stage('Set branch name') {
             steps {
                 script{
@@ -30,4 +31,4 @@ pipeline {
    
             }
 }
-}
+
