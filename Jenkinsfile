@@ -12,8 +12,13 @@ pipeline {
                echo "${BIR_SIZE}"
               script {
                  GIR_SIZE = sh(returnStdout: true, script: "git branch --show-current")
+                echo "${GIR_SIZE}"
               } 
-              echo "${GIR_SIZE}"
+              script {
+                JIR_SIZE = sh(returnStdout: true, script: "git branch")
+                echo "${JIR_SIZE}"
+              } 
+              
                script {
                      DIR_SIZE = sh(returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1` ")
                 }
