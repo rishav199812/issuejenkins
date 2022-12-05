@@ -11,7 +11,7 @@ pipeline {
                 }
                 echo "${DIR_SIZE}"
                script {
-                   BIR_SIZE = sh(returnStdout: true, script: "git branch --contains ${DIR_SIZE}")
+                   BIR_SIZE = sh(returnStdout: true, script: "git branch -a --contains ${DIR_SIZE}")
                }
                echo "${BIR_SIZE}"
               script {
