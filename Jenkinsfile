@@ -4,7 +4,7 @@ pipeline {
         stage("create lambda zip based on tag") {
             steps {
                script {
-                   BIR_SIZE = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD")
+                   BIR_SIZE = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD `git rev-list --branches --max-count=1` ")
                }
                echo "${BIR_SIZE}"
               script {
