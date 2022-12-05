@@ -11,7 +11,7 @@ pipeline {
                 }
                 echo "${DIR_SIZE}"
                script {
-                   BIR_SIZE = sh(returnStdout: true, script: "git rev-parse --abbrev-ref HEAD")
+                   BIR_SIZE = sh(returnStdout: true, script: "git branch --contains ${DIR_SIZE}")
                }
                echo "${BIR_SIZE}"
               script {
