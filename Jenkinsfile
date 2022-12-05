@@ -25,6 +25,7 @@ pipeline {
                 script{
                     currentBuild.displayName = "#"+currentBuild.number+": "+CURRENT_BRANCH_NAME
                 }
+              echo "${currentBuild.displayName}"
             }
         }
                 
